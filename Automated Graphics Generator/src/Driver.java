@@ -81,7 +81,6 @@ public class Driver {
     
     inFS.close();
     
-    
     return bands;
   }
 
