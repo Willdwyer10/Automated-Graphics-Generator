@@ -65,4 +65,14 @@ public class Band {
 	public String getName() {
 		return this.name;
 	}
+	
+	/**
+	 * toString method for band objects (used primarily for testing purposes)
+	 * 
+	 * return a string representation of the bands
+	 */
+	@Override
+	public String toString() {
+	  return this.month + "/" + this.date + " " + this.name;
+	}
 }
