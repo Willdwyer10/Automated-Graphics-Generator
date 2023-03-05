@@ -1,3 +1,4 @@
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -11,17 +12,26 @@ public class GUI extends JFrame implements ActionListener{
   
   private JButton buttonSelectFile;
   private JButton buttonConfirmGeneration;
+  private JButton buttonBeginIgniteProgram;
   private File selectedFile;
+  private GraphicGenerator test;
+  private JFrame frame;
   
+  /**
+   * constructor the the GUI
+   */
   public GUI() {
     
-    JFrame frame = new JFrame();
+    frame = new JFrame();
     
     buttonSelectFile = new JButton("Select File");
     buttonSelectFile.addActionListener(this);
     
-    buttonConfirmGeneration = new JButton("Click to commence generation");
+    buttonConfirmGeneration = new JButton("Click to begin the generation of graphics");
     buttonConfirmGeneration.addActionListener(this);
+    
+    buttonBeginIgniteProgram = new JButton("Click this button to begin creating Ignite messages");
+    buttonBeginIgniteProgram.addActionListener(this);
     
     JLabel label = new JLabel("Pleas select a \".txt file\" to create graphics from");
     
@@ -30,6 +40,9 @@ public class GUI extends JFrame implements ActionListener{
     panel.setLayout(new GridLayout(0, 1));
     panel.add(buttonSelectFile);
     panel.add(buttonConfirmGeneration);
+    panel.add(buttonBeginIgniteProgram);
+    buttonConfirmGeneration.setVisible(false);
+    buttonBeginIgniteProgram.setVisible(false);
     panel.add(label);
     
     frame.add(panel, BorderLayout.CENTER);
@@ -37,12 +50,6 @@ public class GUI extends JFrame implements ActionListener{
     frame.setTitle("Automated Graphics Generator");
     frame.pack();
     frame.setVisible(true);
-    buttonConfirmGeneration.setVisible(false);
-
-    
-    
-    
-    frame.pack();
   }
   
   /**
@@ -67,14 +74,27 @@ public class GUI extends JFrame implements ActionListener{
       System.out.println("button confirmation clicked");
       try {
         ArrayList<Band> bands = Driver.createArrayListofBands(selectedFile);
-        GraphicGenerator test = new GraphicGenerator(bands, 1080, 720);
+        test = new GraphicGenerator(bands, 1080, 720);
         test.createAndExportAllGraphics();
         System.out.println("graphics have been created");
       } catch (FileNotFoundException e1) {
         System.out.println("file was not found");
         e1.printStackTrace();
       }
-
+      buttonConfirmGeneration.setVisible(false);
+      buttonBeginIgniteProgram.setVisible(true);
+    }
+    
+    if(e.getSource() == buttonBeginIgniteProgram) {
+      System.out.println("button begin ignite program clicked");
+      try {
+        new RobotOperator(test.numBands());
+      } catch (AWTException e1) {
+        System.out.println("Failed to create robot object");
+        e1.printStackTrace();
+      }
+      
+      buttonBeginIgniteProgram.setVisible(false);
     }
   }
   

@@ -231,4 +231,12 @@ public class GraphicGenerator {
     }
   }
   
+  /**
+   * Accessor method for the number of bands in the ArrayList
+   * 
+   * @return the number of bands in the current bands group
+   */
+  public int numBands() {
+    return this.bands.size();
+  }
 }

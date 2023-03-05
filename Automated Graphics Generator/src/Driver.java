@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import javax.imageio.ImageIO;
 import java.awt.GraphicsEnvironment;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.AWTException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,33 +23,31 @@ import javax.swing.*;
  */
 public class Driver {
 
-  public static void main(String[] args) throws FileNotFoundException {
+  public static void main(String[] args){
     
-    // Open the file and initialize the scanner
     /*
      * NOTE: "file" should be formatted as follows (must include newline at end of last band):
      * month/date name
      * month/date name
      * (additional newline)
-     * 
      */
-    
-    /*File file = new File("Mock Band Information.txt");
-  
-    ArrayList<Band> bands = Driver.createArrayListofBands(file);
-    
-    GraphicGenerator test = new GraphicGenerator(bands, 1080, 720);
-    test.createAndExportAllGraphics();
-    
-    System.out.println("Main method stuff pre-gui is done running");
-    */
-    
-    
     // GUI STUFF
+    /*while(true) {
+      try {
+      Point p = MouseInfo.getPointerInfo().getLocation();
+      System.out.println("(" + p.x + ", " + p.y + ")");
+      } catch (Exception e) {
+        System.out.println("skipped");
+      }
+    }*/
+    
+    
+    
     new GUI();
     
+    
   }
-  
+
   /**
    * Method to generate an ArrayList of bands based on a text file passed to the method
    * 
