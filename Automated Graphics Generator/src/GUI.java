@@ -16,6 +16,8 @@ public class GUI extends JFrame implements ActionListener{
   private File selectedFile;
   private GraphicGenerator test;
   private JFrame frame;
+  private ArrayList<JButton> errorCheckingAlgorithmButtons;
+  private JPanel panel;
   
   /**
    * constructor the the GUI
@@ -33,9 +35,9 @@ public class GUI extends JFrame implements ActionListener{
     buttonBeginIgniteProgram = new JButton("Click this button to begin creating Ignite messages");
     buttonBeginIgniteProgram.addActionListener(this);
     
-    JLabel label = new JLabel("Pleas select a \".txt file\" to create graphics from");
+    JLabel label = new JLabel("Please select a \".txt file\" to create graphics from");
     
-    JPanel panel = new JPanel();
+    panel = new JPanel();
     panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
     panel.setLayout(new GridLayout(0, 1));
     panel.add(buttonSelectFile);
@@ -58,6 +60,7 @@ public class GUI extends JFrame implements ActionListener{
   @Override
   public void actionPerformed(ActionEvent e) {
     
+    // case when the button to select a file is clicked
     if(e.getSource() == buttonSelectFile) {
       System.out.println("button select clicked");
       JFileChooser fileChooser = new JFileChooser();
@@ -70,13 +73,24 @@ public class GUI extends JFrame implements ActionListener{
       buttonConfirmGeneration.setVisible(true);
     }
     
+    // case when the button to generate graphics is clicked
     if(e.getSource() == buttonConfirmGeneration) {
       System.out.println("button confirmation clicked");
       try {
         ArrayList<Band> bands = Driver.createArrayListofBands(selectedFile);
         test = new GraphicGenerator(bands, 1080, 720);
         test.createAndExportAllGraphics();
-        System.out.println("graphics have been created");
+        System.out.println("graphics have been created, now on to error");
+        errorCheckingAlgorithmButtons = new ArrayList<JButton>(test.numBands());
+        for(int i = 0; i < test.numBands(); i++) {
+          String buttonText = test.getBand(i).nameIntoSections()[0];
+          if(test.getBand(i).nameIntoSections()[1] != null) {
+            buttonText = buttonText + "||" + test.getBand(i).nameIntoSections()[1];
+          }
+          errorCheckingAlgorithmButtons.add(new JButton(buttonText));
+          panel.add(errorCheckingAlgorithmButtons.get(i));
+          frame.pack();
+        }
       } catch (FileNotFoundException e1) {
         System.out.println("file was not found");
         e1.printStackTrace();
@@ -85,6 +99,7 @@ public class GUI extends JFrame implements ActionListener{
       buttonBeginIgniteProgram.setVisible(true);
     }
     
+    // case when the button to begin the Ignite program is clicked
     if(e.getSource() == buttonBeginIgniteProgram) {
       System.out.println("button begin ignite program clicked");
       try {

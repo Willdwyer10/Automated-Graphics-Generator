@@ -33,6 +33,7 @@ public class Driver {
      */
     // GUI STUFF
     /*while(true) {
+      
       try {
       Point p = MouseInfo.getPointerInfo().getLocation();
       System.out.println("(" + p.x + ", " + p.y + ")");

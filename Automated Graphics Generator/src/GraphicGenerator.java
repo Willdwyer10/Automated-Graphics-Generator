@@ -239,4 +239,14 @@ public class GraphicGenerator {
   public int numBands() {
     return this.bands.size();
   }
+  
+  /**
+   * Accessor method for an individual band in the ArrayList bands
+   * 
+   * @param i - the index to be retrieved
+   * @return Band object at index i
+   */
+  public Band getBand(int i) {
+    return this.bands.get(i);
+  }
 }
