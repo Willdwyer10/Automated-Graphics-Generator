@@ -1,5 +1,7 @@
 import java.util.Scanner;
+import javax.imageio.ImageIO;
 import java.awt.GraphicsEnvironment;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,15 +27,11 @@ public class Driver {
      * 
      */
     File file = new File("Mock Band Information.txt");
-    
-    // 
+  
     ArrayList<Band> bands = Driver.createArrayListofBands(file);
     
     GraphicGenerator test = new GraphicGenerator(bands, 1080, 720);
     test.createAndExportAllGraphics();
-    
-    //System.out.println(bands);
-    
     
     System.out.println("Main method done running");
     		

@@ -76,7 +76,7 @@ public class GraphicGenerator {
     File outputFile = new File("Generated Graphics/" + band.toString() + ".jpg");
     
     try {
-      ImageIO.write(image,  "png", outputFile);
+      ImageIO.write(image,  "jpg", outputFile);
     } catch (IOException e) {
       System.out.println("could not load the output file correctly");
       e.printStackTrace();
@@ -220,7 +220,7 @@ public class GraphicGenerator {
     
     // Now let's draw the dates
     g2d.setFont(bandDateFont);
-    g2d.setColor(Color.LIGHT_GRAY);
+    g2d.setColor(new Color(175, 208, 250));
     int dateX = (buffImg.getWidth() - bandDateMetrics.stringWidth(dateText)) / 2;
 
     if(bandNameSections[1] != null) {
