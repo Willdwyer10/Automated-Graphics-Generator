@@ -14,7 +14,6 @@ public class Driver {
 
   public static void main(String[] args) throws FileNotFoundException {
     
-    
     // Open the file and initialize the scanner
     /*
      * NOTE: "file" should be formatted as follows (must include newline at end of last band):
@@ -29,7 +28,10 @@ public class Driver {
     // 
     ArrayList<Band> bands = Driver.createArrayListofBands(file);
     
-    System.out.println(bands);
+    GraphicGenerator test = new GraphicGenerator(bands, 1080, 720);
+    test.createAndExportAllGraphics();
+    
+    //System.out.println(bands);
     		
   }
   

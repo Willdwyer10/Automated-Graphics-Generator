@@ -67,12 +67,13 @@ public class Band {
 	}
 	
 	/**
-	 * toString method for band objects (used primarily for testing purposes)
+	 * toString method for band objects
 	 * 
 	 * return a string representation of the bands
 	 */
 	@Override
 	public String toString() {
-	  return this.month + "/" + this.date + " " + this.name;
+	  String returnString = "M_" +this.month + "_" + this.date + "_" + this.name;
+	  return returnString.replaceAll("[\\&\\/\\\"\\(\\)\\']", "").replaceAll(" ", "");
 	}
 }
