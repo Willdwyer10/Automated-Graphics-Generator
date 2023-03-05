@@ -78,23 +78,14 @@ public class GUI extends JFrame implements ActionListener{
       System.out.println("button confirmation clicked");
       try {
         ArrayList<Band> bands = Driver.createArrayListofBands(selectedFile);
+        
         test = new GraphicGenerator(bands, 1080, 720);
         test.createAndExportAllGraphics();
-        System.out.println("graphics have been created, now on to error");
-        errorCheckingAlgorithmButtons = new ArrayList<JButton>(test.numBands());
-        for(int i = 0; i < test.numBands(); i++) {
-          String buttonText = test.getBand(i).nameIntoSections()[0];
-          if(test.getBand(i).nameIntoSections()[1] != null) {
-            buttonText = buttonText + "||" + test.getBand(i).nameIntoSections()[1];
-          }
-          errorCheckingAlgorithmButtons.add(new JButton(buttonText));
-          panel.add(errorCheckingAlgorithmButtons.get(i));
-          frame.pack();
-        }
-      } catch (FileNotFoundException e1) {
-        System.out.println("file was not found");
-        e1.printStackTrace();
+        System.out.println("graphics have successfully been created");
+      } catch(FileNotFoundException e1) {
+        System.out.println("file was not able to be found");
       }
+      
       buttonConfirmGeneration.setVisible(false);
       buttonBeginIgniteProgram.setVisible(true);
     }
