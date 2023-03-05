@@ -1,6 +1,8 @@
 import java.util.Scanner;
+import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 //import java.io.IOException;
 import java.util.ArrayList;
 
@@ -22,7 +24,6 @@ public class Driver {
      * (additional newline)
      * 
      */
-    System.out.println("opening Mock Band Information.txt");
     File file = new File("Mock Band Information.txt");
     
     // 
@@ -32,6 +33,9 @@ public class Driver {
     test.createAndExportAllGraphics();
     
     //System.out.println(bands);
+    
+    
+    System.out.println("Main method done running");
     		
   }
   
@@ -45,13 +49,11 @@ public class Driver {
   public static ArrayList<Band> createArrayListofBands(File file) throws FileNotFoundException{
     
     Scanner inFS = new Scanner(file);
-    System.out.println("successfully opened the file");
     
     // All the bands from the spreadsheet
     ArrayList<Band> bands = new ArrayList<Band>();
     
     // Getting the data from the file
-    System.out.println("Trying to read data from the opened file");
     while(inFS.hasNext()) {
       int month;
       int date;
@@ -78,9 +80,7 @@ public class Driver {
       
       bands.add(new Band(month, date, name));
     }
-        
-    System.out.println("Successfully read data from the opened file");
-    
+            
     inFS.close();
     
     return bands;
