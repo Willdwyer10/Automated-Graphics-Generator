@@ -78,11 +78,11 @@ public class Band {
 	    if(Character.isUpperCase(this.name.charAt(i))) count ++;
 	    
 	  }
-	  System.out.println();
 	  return count;
 	}
 	
 	/**
+	 * Seperates the name of the band into two lines as equivalently as possible
 	 * 
 	 * @return an array that contains one string for the first line of the name and one string for
 	 *             for the second line of the string
@@ -126,20 +126,101 @@ public class Band {
 	        if(this.name.charAt(i) == '/' || this.name.charAt(i) == '&') {
 	          returner[0] = this.name.substring(0, spacePosition);
 	          returner[1] = this.name.substring(spacePosition+1, this.name.length());
+	          break;
 	        }
 	        
 	        else {
 	          returner[0] = this.name.substring(0, spacePosition + 2);
 	          returner[1] = this.name.substring(spacePosition + 3, this.name.length());
 	        }
-	      } // end for
-	    } // end else 
-	  } // end else if
+	      }
+	    }
+	  }
 	  
-	  // case where the name is more than two words long
+	  // case where there are three words
+	  else if (this.getNumWords() == 3) {
+	    int spacePosition1 = 0;
+	    int spacePosition2 = 0;
+	    for(int i = 0; i < this.name.length(); i++) {
+	      if(this.name.charAt(i) == ' ') {
+	        spacePosition1 = i;
+	        break;
+	      }
+	    }
+	    for(int i = spacePosition1 + 1; i < this.name.length(); i++) {
+	      if(this.name.charAt(i) == ' ') {
+	        spacePosition2 = i;
+	        break;
+	      }
+	    }
+	    
+	    int numSpaces = 0;
+	    for(int i = this.name.length()/2; i < this.name.length(); i++) {
+	      if(this.name.charAt(i) == ' ') numSpaces++;
+	    }
+	    
+	    
+	    if(numSpaces > 1) {
+	      returner[0] = this.name.substring(0, spacePosition1);
+	      returner[1] = this.name.substring(spacePosition1 + 1, this.name.length());
+	    } else {
+	      returner[0] = this.name.substring(0, spacePosition2);
+	      returner[1] = this.name.substring(spacePosition2 + 1, this.name.length());
+	    }
+	  }
+	  
+	  // Case where there are four words
+	  else if (this.getNumWords() == 4) {
+	    int spacePosition1 = 0;
+        int spacePosition2 = 0;
+        int spacePosition3 = 0;
+        for(int i = 0; i < this.name.length(); i++) {
+          if(this.name.charAt(i) == ' ') {
+            spacePosition1 = i;
+            break;
+          }
+        }
+        
+        for(int i = spacePosition1 + 1; i < this.name.length(); i++) {
+          if(this.name.charAt(i) == ' ') {
+            spacePosition2 = i;
+            break;
+          }
+        }
+        
+        for(int i = spacePosition2 + 1; i < this.name.length(); i++) {
+          if(this.name.charAt(i) == ' ') {
+            spacePosition3 = i;
+            break;
+          }
+        }
+        
+        int numSpaces = 0;
+        for(int i = this.name.length()/2; i < this.name.length(); i++) {
+          if(this.name.charAt(i) == ' ') numSpaces++;
+        }
+        
+        if(numSpaces > 2) {
+          returner[0] = this.name.substring(0, spacePosition1);
+          returner[1] = this.name.substring(spacePosition1 + 1, this.name.length());
+        } else {
+          returner[0] = this.name.substring(0, spacePosition3);
+          returner[1] = this.name.substring(spacePosition3 + 1, this.name.length());
+        }
+	  }
+	  
+	  // default case with any other case
 	  else {
-	    returner[0] = this.name;
-	    returner[1] = this.name;
+	    int breakPoint = this.name.length();
+	    for(int i = (this.name.length() * 3) / 8; i < this.name.length(); i++) {
+	      if(this.name.charAt(i) == ' ') {
+	        breakPoint = i;
+	        break;
+	      }
+	    }
+	    returner[0] = this.name.substring(0, breakPoint);
+	    if(breakPoint != this.name.length()) 
+	            returner[1] = this.name.substring(breakPoint + 1, this.name.length());
 	  }
 	  
 	  // changes all the "/" characters to "&" characters
@@ -150,7 +231,6 @@ public class Band {
 	  return returner;
 	}
 
-	
 	/**
 	 * toString method for band objects
 	 * 
