@@ -1,12 +1,16 @@
 import java.util.Scanner;
 import javax.imageio.ImageIO;
 import java.awt.GraphicsEnvironment;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 //import java.io.IOException;
 import java.util.ArrayList;
+
+//Stuff for GUI
+import javax.swing.*;
 
 /**
  * Driver class for the program
@@ -26,15 +30,21 @@ public class Driver {
      * (additional newline)
      * 
      */
-    File file = new File("Mock Band Information.txt");
+    
+    /*File file = new File("Mock Band Information.txt");
   
     ArrayList<Band> bands = Driver.createArrayListofBands(file);
     
     GraphicGenerator test = new GraphicGenerator(bands, 1080, 720);
     test.createAndExportAllGraphics();
     
-    System.out.println("Main method done running");
-    		
+    System.out.println("Main method stuff pre-gui is done running");
+    */
+    
+    
+    // GUI STUFF
+    new GUI();
+    
   }
   
   /**

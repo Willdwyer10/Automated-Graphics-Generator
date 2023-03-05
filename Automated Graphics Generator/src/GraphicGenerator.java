@@ -15,7 +15,6 @@ import javax.imageio.ImageIO;
 //Other imports
 import java.util.ArrayList;
 
-
 /**
  * Generates and exports the images that will be used 
  * 
@@ -69,8 +68,8 @@ public class GraphicGenerator {
     
     // Variables to use for now before they are made into instance variables 
     int xPadding = 60;
-    int maxNameFontSize = 250;
-    int maxDateFontSize = 160;
+    int maxNameFontSize = 280;
+    int maxDateFontSize = 230;
     
     this.drawText(g2d, image, band, xPadding, maxNameFontSize, maxDateFontSize);
     File outputFile = new File("Generated Graphics/" + band.toString() + ".jpg");

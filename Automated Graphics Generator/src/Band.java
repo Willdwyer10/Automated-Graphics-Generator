@@ -82,7 +82,7 @@ public class Band {
 	}
 	
 	/**
-	 * Seperates the name of the band into two lines as equivalently as possible
+	 * Seperates the name of the band into two strings (array-format) as equivalently as possible
 	 * 
 	 * @return an array that contains one string for the first line of the name and one string for
 	 *             for the second line of the string
